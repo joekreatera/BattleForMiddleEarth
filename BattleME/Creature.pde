@@ -3,6 +3,29 @@ public class Creature{
   int py;
   int sx;
   int sy;
+  int magic;
+  int strength;
+  int life;
+  
+  public void receiveDamage(int damage){
+    life -= damage;
+  }
+  
+  public int getLife(){
+    return life;
+  }
+  public int getStrength(){
+    return strength;
+  }
+  
+  public int getMagic(){
+    return magic;
+  }
+  
+  public void addMagic(int pts){
+    magic += pts;
+  }
+  
   public Creature(){
     px = (int)(random(100));
     py = (int)(random(100));
