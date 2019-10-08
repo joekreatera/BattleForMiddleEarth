@@ -7,6 +7,15 @@ public class Creature{
   int strength;
   int life;
   
+  boolean fighting;
+  
+  public void setFighting(boolean b){
+    fighting = b;
+  }
+  public boolean isFighting(){
+    return fighting;
+  }
+  
   public void receiveDamage(int damage){
     life -= damage;
   }
