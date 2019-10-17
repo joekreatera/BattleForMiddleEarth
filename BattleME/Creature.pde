@@ -77,6 +77,13 @@ public class Creature {
   public void updateFight(Creature c1){
   
   }
+  
+  public float getLuckyStrike(){
+    if( random(1,10) > 7){
+      return (getStrength()+getMagic())*0.5*0.75f;
+    }
+    return  0.0f;
+  }
   public void render(int maxWorldX, int maxWorldY) {
     int dpx = (int)(px/100f*maxWorldX);
     int dpy = (int)(py/100f*maxWorldY);
@@ -84,12 +91,14 @@ public class Creature {
       fill(255,0,0);
       ellipse(dpx+3,dpy+3,2,2);
     }
-    ellipse(dpx, dpy, 6, 6);
+    ellipse(dpx, dpy, 6+getLife()/100, 6+getLife()/100);
     
     if( !isAlive() ){
       fill(0,0,0);
       ellipse(dpx, dpy, 6, 6);
     }
     fill(255,255,255);
+    text(""+getLife(),dpx,dpy);
+     
   }
 }

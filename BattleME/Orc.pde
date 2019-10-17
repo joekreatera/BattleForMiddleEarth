@@ -8,6 +8,10 @@ public class Orc extends Creature{
   
   public void updateFight(Creature c1){
     int force = (int)(getStrength()*0.7f+getMagic()*0.3f);
+    
+    if( getLife() < 200)
+      force += getLuckyStrike();
+      
     c1.receiveDamage(force);
   }
   
