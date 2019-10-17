@@ -6,4 +6,9 @@ public class Orc extends Creature{
     life = (int)random(1000,2500);
   }
   
+  public void updateFight(Creature c1){
+    int force = (int)(getStrength()*0.7f+getMagic()*0.3f);
+    c1.receiveDamage(force);
+  }
+  
 }

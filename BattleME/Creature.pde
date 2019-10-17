@@ -6,7 +6,7 @@ public class Creature {
   int magic;
   int strength;
   int life;
-
+  private int movesPassed =0;
   boolean fighting;
 
   public void setFighting(boolean b) {
@@ -18,6 +18,10 @@ public class Creature {
 
   public void receiveDamage(int damage) {
     life -= damage;
+  }
+  
+  public boolean isAlive(){
+    return life > 0;
   }
 
   public int getLife() {
@@ -39,13 +43,24 @@ public class Creature {
     px = (int)(random(100));
     py = (int)(random(100));
 
-    int sign = random(10)>5?1:-1;
-    sx = (((int)random(2))+1)*sign;
-    sign = random(10)>5?1:-1;
-    sy = (((int)random(2))+1)*sign;
+    sx = calculateSpeed(1,2);
+    sy = calculateSpeed(1,2);
   }
+  
+  private int calculateSpeed(int min, int maxAdvance){
+   int sign = random(10)>5?1:-1;
+    return (((int)random(maxAdvance))+min)*sign;
+  }
+  
   public void move() {
-    if ( !isFighting() ) {
+    if ( !isFighting() && isAlive() ) {
+     
+      if( movesPassed++ > 20){
+        sx = calculateSpeed(1,2);
+        sy = calculateSpeed(1,2);
+        movesPassed = 0;
+      }
+      
       px += sx;// px = px + sx
       py += sy;
 
@@ -55,7 +70,12 @@ public class Creature {
       if ( (py >= 100 && sy > 0)  ||  (py <= 0 && sy < 0)  ) {
         sy *= -1;
       }
+      
     }
+  }
+  
+  public void updateFight(Creature c1){
+  
   }
   public void render(int maxWorldX, int maxWorldY) {
     int dpx = (int)(px/100f*maxWorldX);
@@ -65,6 +85,11 @@ public class Creature {
       ellipse(dpx+3,dpy+3,2,2);
     }
     ellipse(dpx, dpy, 6, 6);
+    
+    if( !isAlive() ){
+      fill(0,0,0);
+      ellipse(dpx, dpy, 6, 6);
+    }
     fill(255,255,255);
   }
 }

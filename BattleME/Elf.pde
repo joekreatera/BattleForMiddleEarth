@@ -6,6 +6,11 @@ public class Elf extends Creature{
     life = (int)random(1500,2000);
   }
   
+  public void updateFight(Creature c1){
+    int force = (int)(getStrength()*0.2f+getMagic()*0.8f);
+    c1.receiveDamage(force);
+  }
+  
   public void render(int mwx, int mwy){
     fill(0,0,255);
     super.render(mwx,mwy);

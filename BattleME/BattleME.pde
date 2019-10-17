@@ -11,6 +11,11 @@ void setup(){
 }
 
 boolean areCloseEnough(Creature c1, Creature c2){
+  if( c1 instanceof Elf && c2 instanceof Elf) return false;
+  if( c1 instanceof Orc && c2 instanceof Orc) return false;
+ 
+ if( !c1.isAlive() || !c2.isAlive() ) return false;
+ 
   float dist = sqrt( pow(c1.px-c2.px,2) +  pow(c1.py - c2.py, 2) );
   if( dist < 8 )
     return true;
@@ -21,6 +26,14 @@ void check(Creature c1, Creature c2){
  if( areCloseEnough(c1,c2)){
     c1.setFighting(true);
     c2.setFighting(true);
+    c1.updateFight(c2);
+    c2.updateFight(c1);
+    println(c1.getLife() + " // " + c2.getLife());
+    
+    if( !c1.isAlive() || !c2.isAlive()){
+      c1.setFighting(false);
+      c2.setFighting(false);      
+    } 
   }
 }
 void draw(){
