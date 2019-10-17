@@ -4,7 +4,9 @@ public class Elf extends Creature{
     magic = (int)(random(55)+60);
     strength = (int)(random(30)+20);
     life = (int)random(1500,2000);
+    setMaxLife(life);
   }
+  
   
   public void updateFight(Creature c1){
     int force = (int)(getStrength()*0.2f+getMagic()*0.8f);

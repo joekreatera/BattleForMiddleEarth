@@ -6,8 +6,19 @@ public class Creature {
   int magic;
   int strength;
   int life;
+  int maxLife;
+  
+  
   private int movesPassed =0;
   boolean fighting;
+
+  public void setMaxLife(int lf){
+    maxLife = lf;
+  }
+  public int getMaxLife(){
+    return maxLife;
+  }
+
 
   public void setFighting(boolean b) {
     fighting = b;
@@ -37,6 +48,14 @@ public class Creature {
 
   public void addMagic(int pts) {
     magic += pts;
+  }
+  
+  public void addLife(int pts) {
+    life += pts;
+  }
+  
+  public void addStrength(int pts) {
+    strength += pts;
   }
 
   public Creature() {
